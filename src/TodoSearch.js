@@ -3,8 +3,14 @@ import './TodoSearch.css';
 
 
 function TodoSearch(){
+    const [ searchValue, setSearchValue ] = React.useState('')
+
+    const onSearchValueChange = (e)=>{
+        setSearchValue(e.target.value);
+    }
+
     return (
-        <input className="TodoSearch" type="text" name="" value="" placeholder="Text"/>
+        <input onChange={onSearchValueChange} className="TodoSearch" type="text" name="" value={searchValue} placeholder="Text"/>
     );
 }
 
