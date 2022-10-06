@@ -8,6 +8,9 @@ import { TodoContext } from "../TodoContext";
 
 
 function AppUi(){
+
+    const {error, loading, searchedTodos, completeTodo, deleteTodo} = React.useContext(TodoContext)
+
     return (
         <React.Fragment>
 
@@ -15,23 +18,23 @@ function AppUi(){
   
         <TodoSearch />
       
-        <TodoContext.Provider>
-          { ({error, loading, searchedTodos, completeTodo, deleteTodo}) =>(
-            <TodoList>
+    
+          
+          <TodoList>
 
-              {error && <p>Estamos cargando, no desesperes</p>}
-    
-              {loading && <p>Estamos cargando, no desesperes</p>}
-    
-              {(!loading && !searchedTodos.length) && <p>Crea tu primer TODO</p>}
-    
-              {searchedTodos.map(todos => (
-                <TodoItem key={todos.text} text={todos.text} completed={todos.completed} onComplete={()=> completeTodo(todos.text)} onDelete={()=> deleteTodo(todos.text)}/>
-              ))}
+            {error && <p>Desesperate</p>}
   
-            </TodoList> 
-          ) }
-        </TodoContext.Provider>
+            {loading && <p>Estamos cargando, no desesperes</p>}
+  
+            {(!loading && !searchedTodos.length) && <p>Crea tu primer TODO</p>}
+  
+            {searchedTodos.map(todos => (
+              <TodoItem key={todos.text} text={todos.text} completed={todos.completed} onComplete={()=> completeTodo(todos.text)} onDelete={()=> deleteTodo(todos.text)}/>
+            ))}
+
+          </TodoList> 
+        
+   
   
         <CreateTodoButton />
       </React.Fragment>
